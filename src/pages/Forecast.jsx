@@ -7,7 +7,7 @@ function Forecast() {
   const [forecast, setForecast] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const API_KEY = "YOUR_API_KEY";
+  const API_KEY = "d96ac752e3c2fb9e85662910529052fd";
 
   const getForecast = async () => {
     if (!city) return;

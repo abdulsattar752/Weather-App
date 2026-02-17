@@ -6,6 +6,7 @@ function Home() {
         <p>
           Real-time weather + 5-day forecast with modern UI.
         </p>
+        <h3>Abdul Sattar</h3>
       </div>
     </div>
   );

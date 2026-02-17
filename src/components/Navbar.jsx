@@ -8,6 +8,7 @@ function Navbar() {
         <Link to="/">Home</Link>
         <Link to="/weather">Current</Link>
         <Link to="/forecast">Forecast</Link>
+        <Link to="/weekly">Weekly Forecast</Link>
       </div>
     </nav>
   );
