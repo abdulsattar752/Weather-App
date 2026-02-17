@@ -1,78 +1,140 @@
+/* Container */
 .weekly-container {
+  font-family: 'Segoe UI', sans-serif;
   min-height: 100vh;
-  padding: 40px 20px;
   background: linear-gradient(135deg, #4e73df, #1cc88a);
-  text-align: center;
+  color: #fff;
+  padding-bottom: 50px;
 }
 
-.weekly-title {
-  font-size: 40px;
-  color: white;
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   margin-bottom: 40px;
 }
 
-.forecast-grid {
-  display: grid;
-  gap: 20px;
-  max-width: 1100px;
-  margin: auto;
+.hero-overlay {
+  text-align: center;
+  z-index: 2;
+  animation: fadeIn 1.5s ease forwards;
 }
 
-.forecast-card {
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease;
-}
-
-.forecast-card:hover {
-  transform: translateY(-8px);
-}
-
-.icon {
-  font-size: 60px;
-  margin-bottom: 15px;
-}
-
-.day {
-  font-size: 22px;
+.hero-title {
+  font-size: 3rem;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.temp {
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Country Selector */
+.country-select-wrapper {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.country-select-wrapper label {
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.country-select-wrapper select {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.country-select-wrapper select:hover {
+  transform: scale(1.05);
+}
+
+/* Forecast Grid */
+.forecast-grid {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Forecast Card */
+.forecast-card {
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  padding: 30px 20px;
+  border-radius: 20px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.3);
+}
+
+.card-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.card-day {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-temp {
   font-size: 20px;
   color: #4e73df;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.condition {
-  color: gray;
-  margin-top: 8px;
+.card-condition {
+  color: #555;
+  font-weight: 500;
 }
 
-/* 📱 Mobile */
+/* Footer Info Section */
+.forecast-info {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 0.9rem;
+  color: #f0f0f0;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
 @media (max-width: 600px) {
-  .weekly-title {
-    font-size: 28px;
-  }
-
-  .forecast-grid {
-    grid-template-columns: 1fr;
-  }
+  .hero-title { font-size: 2rem; }
+  .hero-subtitle { font-size: 1rem; }
+  .forecast-card { width: 90%; }
 }
 
-/* 📲 Tablet */
 @media (min-width: 601px) and (max-width: 1024px) {
-  .forecast-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .forecast-card { width: 45%; }
 }
 
-/* 💻 Desktop */
 @media (min-width: 1025px) {
-  .forecast-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .forecast-card { width: 220px; }
 }
