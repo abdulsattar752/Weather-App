@@ -70,6 +70,7 @@ function WeeklyForecast() {
           </div>
         ))}
       </div>
+      
 
       {/* Footer / Info Section */}
       <section className="forecast-info">
