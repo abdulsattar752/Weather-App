@@ -3,13 +3,14 @@ import "../styles/WeeklyForecast.css";
 
 
 function WeeklyForecast() {
-  const [country, setCountry] = useState("UK");
+  const [country, setCountry] = useState("Pakistan");
 
-  const countries = ["UK", "India", "Pakistan"];
+  const countries = ["UK", "India", "Pakistan" ,"Australia"];
 
   const forecastData = {
     UK: [
       { day: "Monday", temp: "15°C", condition: "Cloudy", icon: "☁️" },
+        { day: "Friday", temp : " 33°C", condition: "Low", icon: "☀️" },
       { day: "Tuesday", temp: "18°C", condition: "Sunny", icon: "☀️" },
       { day: "Wednesday", temp: "16°C", condition: "Rainy", icon: "🌧" },
     ],
@@ -19,6 +20,11 @@ function WeeklyForecast() {
       { day: "Wednesday", temp: "31°C", condition: "Cloudy", icon: "☁️" },
     ],
     Pakistan: [
+      { day: "Monday", temp: "28°C", condition: "Sunny", icon: "☀️" },
+      { day: "Tuesday", temp: "27°C", condition: "Cloudy", icon: "☁️" },
+      { day: "Wednesday", temp: "26°C", condition: "Rainy", icon: "🌧" },
+    ],
+    Australia: [
       { day: "Monday", temp: "28°C", condition: "Sunny", icon: "☀️" },
       { day: "Tuesday", temp: "27°C", condition: "Cloudy", icon: "☁️" },
       { day: "Wednesday", temp: "26°C", condition: "Rainy", icon: "🌧" },
