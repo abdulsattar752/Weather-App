@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import "../styles/Auth.css";
+// src/pages/Login.jsx
+import React, { useState } from 'react';
+import '../styles/Auth.css';
 
-function Login() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Temporary simple login logic
-    if (email === "user@test.com" && password === "123456") {
-      localStorage.setItem("isLoggedIn", true);
-      navigate("/"); // redirect to Home
-    } else {
-      alert("Invalid credentials");
+    if (!email || !password) {
+      setError('Please fill in all fields');
+      return;
     }
+    // Handle login logic
+    console.log('Login:', { email, password });
+    setError('');
   };
 
   return (
     <div className="auth-container">
-      <form className="auth-form" onSubmit={handleLogin}>
+      <form onSubmit={handleSubmit} className="auth-form">
         <h2>Login</h2>
         <input
           type="email"
@@ -28,6 +28,7 @@ function Login() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          aria-required="true"
         />
         <input
           type="password"
@@ -35,14 +36,13 @@ function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          aria-required="true"
         />
+        {error && <p className="error">{error}</p>}
         <button type="submit">Login</button>
-        <p>
-          Don't have an account? <Link to="/signup">Signup</Link>
-        </p>
       </form>
     </div>
   );
-}
+};
 
 export default Login;

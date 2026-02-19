@@ -1,0 +1,294 @@
+/* Add to src/styles/App.css */
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.spinner {
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-left-color: var(--primary);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* Add to src/styles/App.css */
+.navbar {
+  background-color: var(--primary);
+  padding: 15px 30px;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li {
+  margin-left: 25px;
+}
+
+.navbar-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.navbar-menu a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .navbar-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .navbar-menu li {
+    margin: 10px 15px 0 0;
+  }
+}
+
+/* Add to src/styles/App.css */
+.weather-card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 30px;
+  text-align: center;
+  max-width: 400px;
+  margin: 30px auto;
+  transition: var(--transition);
+}
+
+.weather-card:hover {
+  transform: translateY(-5px);
+}
+
+.weather-card img {
+  width: 150px;
+  height: 150px;
+  margin: -20px 0 -10px;
+}
+
+.weather-card p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.weather-card strong {
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .weather-card {
+    padding: 20px;
+    max-width: 90%;
+  }
+}
+
+/* Add to src/styles/App.css */
+.alert-container {
+  margin: 30px auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.alert-banner {
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  color: white;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.alert-banner:hover {
+  transform: translateY(-3px);
+}
+
+.alert-banner.extreme, .alert-banner.severe {
+  background-color: var(--error);
+}
+
+.alert-banner.moderate {
+  background-color: var(--warning);
+}
+
+.alert-banner.minor, .alert-banner.info {
+  background-color: var(--info);
+}
+
+.alert-header {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.alert-sender {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+.alert-tags {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: rgba(255,255,255,0.25);
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+/* Add to src/styles/App.css */
+.home-page {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.home-page h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.home-page p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: var(--secondary);
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    padding: 50px 15px;
+  }
+  .home-page h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Add to src/styles/App.css */
+.weather-page, .forecast-page, .weekly-forecast-page {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-form input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.search-form input:focus {
+  border-color: var(--primary);
+}
+
+.search-form button {
+  border-radius: 0 8px 8px 0;
+  padding: 12px 24px;
+}
+
+@media (max-width: 768px) {
+  .search-form {
+    flex-direction: column;
+  }
+  .search-form input {
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  .search-form button {
+    border-radius: 8px;
+  }
+}
+
+/* Add to src/styles/App.css */
+.forecast-list, .weekly-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.forecast-card, .weekly-card {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.forecast-card:hover, .weekly-card:hover {
+  transform: translateY(-5px);
+}
+
+.forecast-card img, .weekly-card img {
+  width: 100px;
+  height: 100px;
+}
+
+.forecast-card h3, .weekly-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.forecast-card p, .weekly-card p {
+  font-size: 1rem;
+  margin: 5px 0;
+}

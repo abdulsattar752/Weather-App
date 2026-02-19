@@ -1,60 +1,74 @@
-import { useState } from "react";
-import WeatherCard from "../components/WeatherCard";
-import Loader from "../components/Loader";
+// src/pages/Forecast.jsx
+import React, { useState, useEffect } from 'react';
+import Loader from '../components/Loader.jsx';
+import AlertBanner from '../components/AlertBanner.jsx';
+import { getCoordinates } from '../utils/geocode.js';
 
-function Forecast() {
-  const [city, setCity] = useState("");
-  const [forecast, setForecast] = useState(null);
+const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+
+const Forecast = () => {
+  const [city, setCity] = useState('Lahore');
+  const [forecastData, setForecastData] = useState([]);
+  const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const API_KEY = "d96ac752e3c2fb9e85662910529052fd";
-
-  const getForecast = async () => {
-    if (!city) return;
-
+  const fetchForecast = async (searchCity) => {
     setLoading(true);
+    setError(null);
+    try {
+      const { lat, lon } = await getCoordinates(searchCity, API_KEY);
 
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
-    );
+      const res = await fetch(
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+      );
+      if (!res.ok) throw new Error('Unable to fetch forecast.');
+      const data = await res.json();
+      setForecastData(data.hourly.slice(0, 8)); // Next 24 hours (3-hour intervals)
+      setAlerts(data.alerts || []);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const data = await res.json();
-    setForecast(data);
-    setLoading(false);
+  useEffect(() => {
+    fetchForecast(city);
+  }, []);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (city.trim()) fetchForecast(city);
   };
 
   return (
-    <div className="page">
-      <div className="glass-card large">
-        <h2>5-Day Forecast</h2>
-
-        <div className="search-box">
-          <input
-            type="text"
-            placeholder="Enter city..."
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <button onClick={getForecast}>Search</button>
-        </div>
-
-        {loading && <Loader />}
-
-        <div className="forecast-grid">
-          {forecast &&
-            forecast.list.slice(0, 8).map((item, index) => (
-              <WeatherCard
-                key={index}
-                date={new Date(item.dt_txt).toLocaleDateString()}
-                temp={item.main.temp}
-                description={item.weather[0].description}
-                icon={item.weather[0].icon}
-              />
-            ))}
-        </div>
+    <div className="forecast-page">
+      <h1>Hourly Forecast</h1>
+      <form onSubmit={handleSearch} className="search-form">
+        <input
+          type="text"
+          placeholder="Enter city name"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <button type="submit" className="btn btn-secondary">Search</button>
+      </form>
+      {loading && <Loader />}
+      {error && <p className="error">{error}</p>}
+      <AlertBanner alerts={alerts} />
+      <div className="forecast-list">
+        {forecastData.map((item, index) => (
+          <div key={index} className="forecast-card">
+            <h3>{new Date(item.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</h3>
+            <img src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} alt={item.weather[0].description} />
+            <p>Temp: {Math.round(item.temp)}°C</p>
+            <p>{item.weather[0].description}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
-}
+};
 
 export default Forecast;

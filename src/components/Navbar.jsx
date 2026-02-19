@@ -1,17 +1,22 @@
-import { Link } from "react-router-dom";
+// src/components/Navbar.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function Navbar() {
+const Navbar = () => {
   return (
     <nav className="navbar">
-      <h2>🌦 Weather App</h2>
-      <div>
-        <Link to="/">Home</Link>
-        <Link to="/weather">Current</Link>
-        <Link to="/forecast">Forecast</Link>
-        <Link to="/weekly">Weekly Forecast</Link>
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo">Weather Pro</Link>
+        <ul className="navbar-menu">
+          <li><Link to="/weather">Current</Link></li>
+          <li><Link to="/forecast">Forecast</Link></li>
+          <li><Link to="/weekly-forecast">Weekly</Link></li>
+          <li><Link to="/login">Login</Link></li>
+          <li><Link to="/signup">Signup</Link></li>
+        </ul>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

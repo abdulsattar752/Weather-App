@@ -1,16 +1,15 @@
-function Home() {
+// src/pages/Home.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const Home = () => {
   return (
-    <div className="page">
-      <div className="glass-card large">
-        <h1>Premium Weather Dashboard</h1>
-        <p>
-          Real-time weather + 5-day forecast with modern UI.
-        </p>
-        <h3>Abdul Sattar</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque.</p>
-      </div>
+    <div className="home-page">
+      <h1>Welcome to Weather Pro, Abdul!</h1>
+      <p>Your go-to app for accurate weather updates and forecasts in Lahore and beyond.</p>
+      <Link to="/weather" className="btn">Check Weather Now</Link>
     </div>
   );
-}
+};
 
 export default Home;
