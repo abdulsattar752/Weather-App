@@ -7,6 +7,7 @@ function Home() {
           Real-time weather + 5-day forecast with modern UI.
         </p>
         <h3>Abdul Sattar</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque.</p>
       </div>
     </div>
   );
