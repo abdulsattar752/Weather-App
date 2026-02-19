@@ -20,17 +20,26 @@ const Weather = () => {
     try {
       const { lat, lon, name } = await getCoordinates(searchCity, API_KEY);
 
-      const res = await fetch(
+      // Try One Call API 3.0 first
+      let res = await fetch(
         `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
       );
+      
+      // Fallback to 2.5 API if 3.0 not available
+      if (!res.ok) {
+        res = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+        );
+      }
+      
       if (!res.ok) throw new Error('Unable to fetch weather data. Please try later.');
       const data = await res.json();
 
       setWeatherData({
         name,
-        main: { ...data.current, feels_like: data.current.feels_like },
-        weather: data.current.weather,
-        wind: data.current,
+        main: data.main || data.current,
+        weather: data.weather,
+        wind: data.wind || data.current,
       });
 
       setAlerts(data.alerts || []);

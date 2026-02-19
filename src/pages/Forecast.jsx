@@ -19,12 +19,19 @@ const Forecast = () => {
     try {
       const { lat, lon } = await getCoordinates(searchCity, API_KEY);
 
-      const res = await fetch(
+      let res = await fetch(
         `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
       );
+      
+      if (!res.ok) {
+        res = await fetch(
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+        );
+      }
+      
       if (!res.ok) throw new Error('Unable to fetch forecast.');
       const data = await res.json();
-      setForecastData(data.hourly.slice(0, 8)); // Next 24 hours (3-hour intervals)
+      setForecastData((data.hourly || data.list || []).slice(0, 8));
       setAlerts(data.alerts || []);
     } catch (err) {
       setError(err.message);
