@@ -1,31 +1,29 @@
-// src/app.jsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './styles/App.css';
-import Navbar from './components/Navbar.jsx';
-import Home from './pages/Home.jsx';
-import Login from './pages/Login.jsx';
-import Signup from './pages/Signup.jsx';
-import Weather from './pages/Weather.jsx';
-import Forecast from './pages/Forecast.jsx';
-import WeeklyForecast from './pages/WeeklyForecast.jsx';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+
+import Home from "./pages/Home";
+import CurrentWeather from "./pages/CurrentWeather";
+import Forecast from "./pages/Forecast";
+import AirQuality from "./pages/AirQuality";
+import Favorites from "./pages/Favorites";
 
 function App() {
   return (
     <Router>
-      <div className="app-container">
-        <Navbar />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/weather" element={<Weather />} />
-            <Route path="/forecast" element={<Forecast />} />
-            <Route path="/weekly-forecast" element={<WeeklyForecast />} />
-          </Routes>
-        </main>
+      <Header />
+      <Navbar />
+      <div style={{minHeight: "80vh", padding: "20px", backgroundColor: "#F1F5F9"}}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/current" element={<CurrentWeather />} />
+          <Route path="/forecast" element={<Forecast />} />
+          <Route path="/air-quality" element={<AirQuality />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
       </div>
+      <Footer />
     </Router>
   );
 }

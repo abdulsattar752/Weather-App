@@ -1,22 +1,35 @@
-// src/components/Navbar.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <Link to="/" className="navbar-logo">Weather Pro</Link>
-        <ul className="navbar-menu">
-          <li><Link to="/weather">Current</Link></li>
-          <li><Link to="/forecast">Forecast</Link></li>
-          <li><Link to="/weekly-forecast">Weekly</Link></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/signup">Signup</Link></li>
-        </ul>
-      </div>
+    <nav style={{
+      background: "#3B82F6",
+      padding: "10px",
+      display: "flex",
+      justifyContent: "center",
+      gap: "15px",
+      flexWrap: "wrap"
+    }}>
+      {["Home","Current Weather","Forecast","Air Quality","Favorites"].map((item) => {
+        const path = item === "Home" ? "/" : `/${item.toLowerCase().replace(" ", "-")}`;
+        return (
+          <Link key={item} to={path} style={{
+            color: "white",
+            textDecoration: "none",
+            fontWeight: "600",
+            padding: "5px 10px",
+            borderRadius: "5px",
+            transition: "0.3s",
+          }}
+          onMouseOver={(e)=>e.target.style.background="#2563EB"}
+          onMouseOut={(e)=>e.target.style.background="transparent"}
+          >
+            {item}
+          </Link>
+        );
+      })}
     </nav>
   );
-};
+}
 
 export default Navbar;
